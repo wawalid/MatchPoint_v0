@@ -98,7 +98,7 @@ function PartidoFormPage() {
 
         {/* Min y Max jugadores en la misma fila */}
         <div className="flex gap-4">
-          <div className="flex flex-col w-1/2">
+          {/* <div className="flex flex-col w-1/2">
             <label className="text-gray-700 mb-1">Mínimo de jugadores</label>
             <input
               type="number"
@@ -106,8 +106,8 @@ function PartidoFormPage() {
               placeholder="1"
               className="w-full bg-zinc-300 text-gray-900 px-4 py-2 rounded-md placeholder-gray-800"
             />
-          </div>
-          <div className="flex flex-col w-1/2">
+          </div> */}
+          <div className="flex flex-col">
             <label className="text-gray-700 mb-1">Máximo de jugadores</label>
             <input
               type="number"

@@ -25,39 +25,42 @@ function Navbar() {
       {/* Derecha libre (puedes poner avatar, login, etc.) */}
       <div>
 
-          <ul className="flex gap-x-5 text-black">
-        {isAuthenticated ? (
-          <>
- 
-            <li>
-              <Link
-                to="/"
-                className="hover:text-orange-400"
-                onClick={() => {
-                  logout();
-                  const res = logoutRequest();
-                  console.log(res);
-                }}
-              >
-                Log out
-              </Link>
-            </li>
-          </>
-        ) : (
-          <>
-          <li>
-              <Link to={"/login"} className="hover:text-orange-400">Mi perfil</Link>
-            </li>
-            <li></li>
-            {/* <li>
-              <Link to={"/login"} className="hover:text-orange-400">Login</Link>
-            </li>
-            <li>
-              <Link to={"/register"} className="hover:text-orange-400">Register</Link>
-            </li> */}
-          </>
-        )}
-      </ul>
+        <ul className="flex gap-x-5 text-black">
+          {isAuthenticated ? (
+            <>
+              <li>
+                <Link to={"/profile"} className="hover:text-orange-400">Mi perfil</Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/"
+                  className="hover:text-orange-400"
+                  onClick={() => {
+                    logout();
+                    const res = logoutRequest();
+                    console.log(res);
+                  }}
+                >
+                  Log out
+                </Link>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to={"/login"} className="hover:text-orange-400">Mi perfil</Link>
+              </li>
+              <li></li>
+              <li>
+                <Link to={"/login"} className="hover:text-orange-400">Login</Link>
+              </li>
+              <li>
+                <Link to={"/register"} className="hover:text-orange-400">Register</Link>
+              </li>
+            </>
+          )}
+        </ul>
       </div>
     </nav>
   );

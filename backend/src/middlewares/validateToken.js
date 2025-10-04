@@ -6,7 +6,7 @@ export const authRequired = (req, res, next) => {
     if (!token) return res.status(401).json({message: "No token, authorization denied"});
 
     jwt.verify(token, TOKEN_SECRET, (err, user) => {
-        if (err) return res.status(403).json({message: "Invalid token"});
+        if (err) return res.status(403).json({message: "Invalid token. You have to log in to access this resource."});
         // console.log("usuario en el middleware auth, req.user:", req.user)
         // console.log("usuario en el middleware auth, user:", user)
         req.user = user

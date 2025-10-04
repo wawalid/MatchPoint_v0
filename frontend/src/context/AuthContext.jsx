@@ -8,9 +8,7 @@ import {
   updateUserRequest,
 } from "../api/auth";
 import { getUsersRequest,getUserByIdRequest, updateVerifiedUserRequest } from "../api/users";
-import { matchRequest } from "../api/admin";
-import { getSystemInfoRequest } from "../api/system_info";
-import { analyzeMealRequest } from "../api/gemini";
+// import { getSystemInfoRequest } from "../api/system_info";
 
 
 export const AuthContext = createContext();
@@ -98,54 +96,21 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const toggleVerificado = async (id) => {
-    try {
-      const res = await updateVerifiedUserRequest(id);
-      console.log(res.data);
-      setUsers((prevUsers) =>
-        prevUsers.map((user) =>
-          user._id === id ? { ...user, is_verified: !user.is_verified } : user
-        )
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const match = async (formData) => {
-    try {
-      const res = await matchRequest(formData);
-      console.log(res.data);
-      return res.data;
-    } catch (error) {
-      console.log(error);
-      throw error; // Propagar el error para que el componente pueda manejarlo
-    }
-  };
+ 
 
 
-  const getSystemInfo = async () => {
-    try {
-      const res = await getSystemInfoRequest();
-      console.log("Información del sistema:", res.data);
-      return res.data;
-    } catch (error) {
-      console.error("Error al obtener información del sistema:", error);
-      throw error;
-    }
-  };
+  // const getSystemInfo = async () => {
+  //   try {
+  //     const res = await getSystemInfoRequest();
+  //     console.log("Información del sistema:", res.data);
+  //     return res.data;
+  //   } catch (error) {
+  //     console.error("Error al obtener información del sistema:", error);
+  //     throw error;
+  //   }
+  // };
 
 
-  const analyzeMeal = async (mealData) => {
-    try {
-      const res = await analyzeMealRequest(mealData);
-      console.log("Análisis de la comida:", res.data);
-      return res.data;
-    } catch (error) {
-      console.error("Error al analizar la comida:", error);
-      throw error;
-    }
-  };
 
 
 
@@ -206,10 +171,7 @@ export const AuthProvider = ({ children }) => {
         updateUser,
         getUsers,
         getUserbyID,
-        toggleVerificado,
-        match,
-        getSystemInfo,
-        analyzeMeal,
+        // getSystemInfo,
         loading,
         user,
         affiliateUser,

@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import cors from 'cors';
 
 import authRoutes from "./routes/auth.routes.js";
+import partidosRoutes from "./routes/partidos.routes.js";
 // // import taskRoutes from "./routes/tasks.routes.js";
 // import systemInfoRoutes from "./routes/system_info.routes.js";
 // import analyzeRoute from "./routes/analyze.routes.js";
@@ -38,9 +39,13 @@ app.use(morgan('dev'));
 app.use(express.json({ limit: "10mb" })); // o más, según lo grande que sean tus imágenes
 app.use(express.urlencoded({ limit: "10mb", extended: true }));
 app.use(cookieParser());
-// app.use("/api", analyzeRoute);
 
+
+
+
+// Rutas
 app.use("/api", authRoutes);
+app.use("/api", partidosRoutes);
 // app.use("/api", taskRoutes);
 // app.use("/api", systemInfoRoutes);
 
