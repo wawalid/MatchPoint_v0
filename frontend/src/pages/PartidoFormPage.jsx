@@ -75,7 +75,11 @@ function PartidoFormPage() {
             <option value="Tenis">Tenis</option>
             <option value="Voleibol">Voleibol</option>
             <option value="Pádel">Pádel</option>
-            <option value="Pádel">Gimnasio</option>
+            <option value="Running">Running</option>
+            <option value="Ciclismo">Ciclismo</option>
+            <option value="Natación">Natación</option>
+            <option value="Senderismo">Senderismo</option>
+            {/* <option value="Pádel">Gimnasio</option> */}
           </select>
         </div>
 
