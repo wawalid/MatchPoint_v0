@@ -34,7 +34,7 @@ export const verifyToken = async (req, res) => {
 };
 
 export const register = async (req, res) => {
-  const { username, password} = req.body;
+  const { username, password } = req.body;
 
   try {
     const userFound = await User.findOne({ username });
@@ -43,7 +43,7 @@ export const register = async (req, res) => {
     const passwordHash = await bcrypt.hash(password, 10);
     const newUser = new User({
       username,
-      password: passwordHash
+      password: passwordHash,
     });
     const userSaved = await newUser.save();
     await userSaved.save();
@@ -56,14 +56,9 @@ export const register = async (req, res) => {
 
     res.json({
       id: userSaved._id,
-      fullname: userSaved.fullname,
+      username: userSaved.username,
       email: userSaved.email,
-      // id_afiliado: userSaved.id_afiliado,
-      // completado: userSaved.completado,
-      // is_verified: userSaved.is_verified,
-      // rrss_1: userSaved.rrss_1,
-      // rrss_2: userSaved.rrss_2,
-      // rrss_3: userSaved.rrss_3,
+      premium: userSaved.premium,
       createdAt: userSaved.createdAt,
       updatedAt: userSaved.updatedAt,
     });
@@ -91,17 +86,9 @@ export const login = async (req, res) => {
     res.json({
       id: userFound._id,
       username: userFound.username,
+      premium: userFound.premium,
+
       // email: userFound.email,
-      // id_afiliado: userFound.id_afiliado,
-      // dni: userFound.dni,
-      // cuenta_bancaria: userFound.cuenta_bancaria,
-      // identidad: userFound.identidad,
-      // completado: userFound.completado,
-      // is_verified: userFound.is_verified,
-      // is_admin: userFound.is_admin,
-      // rrss_1: userFound.rrss_1,
-      // rrss_2: userFound.rrss_2,
-      // rrss_3: userFound.rrss_3,
       createdAt: userFound.createdAt,
       updatedAt: userFound.updatedAt,
     });
@@ -132,17 +119,18 @@ export const profile = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  const { fullname, email, password, dni, cuenta_bancaria, identidad, rrss_1, rrss_2, rrss_3 } =
-    req.body;
+  const {
+    username,
+    email,
+    password,
+    dni
+  } = req.body;
   const userFound = await User.findById(req.user.id);
   if (!userFound) return res.status(400).json({ message: "User not found" });
 
   if (fullname) userFound.fullname = fullname;
   if (email) userFound.email = email;
   if (password) userFound.password = await bcrypt.hash(password, 10);
-  if (rrss_1) userFound.rrss_1 = rrss_1;
-  if (rrss_2) userFound.rrss_2 = rrss_2;
-  if (rrss_3) userFound.rrss_3 = rrss_3;
   if (dni !== undefined) userFound.dni = dni;
   if (cuenta_bancaria !== undefined)
     userFound.cuenta_bancaria = cuenta_bancaria;
@@ -157,15 +145,6 @@ export const updateUser = async (req, res) => {
     id: updatedUser._id,
     fullname: updatedUser.fullname,
     email: updatedUser.email,
-    // id_afiliado: updatedUser.id_afiliado,
-    // is_verified: updatedUser.is_verified,
-    // dni: updatedUser.dni,
-    // cuenta_bancaria: updatedUser.cuenta_bancaria,
-    // identidad: updatedUser.identidad,
-    // completado: updatedUser.completado,
-    // rrss_1: updatedUser.rrss_1,
-    // rrss_2: updatedUser.rrss_2,
-    // rrss_3: updatedUser.rrss_3,
     createdAt: updatedUser.createdAt,
     updatedAt: updatedUser.updatedAt,
   });
