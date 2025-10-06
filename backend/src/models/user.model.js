@@ -10,6 +10,7 @@ const userSchema = new mongoose.Schema(
     // is_admin: { type: Boolean, default: false },
     // is_banned: { type: Boolean, default: false },
     dni: { type: String, default: null },
+    premium: { type: Boolean, default: false },
     fecha_registro: { type: Date, default: Date.now },
   },
   {

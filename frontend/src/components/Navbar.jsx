@@ -12,13 +12,19 @@ function Navbar() {
       {/* Logo + Título + Links juntos a la izquierda */}
       <div className="flex items-center gap-8">
         <div className="flex items-center gap-2">
-          <img src="/logo.png" alt="MatchPoint Logo" className="w-8 h-8" />
+          <img src="../../media/baloncesto_2.png" alt="MatchPoint Logo" className="w-8 h-8" />
           <span className="font-bold text-orange-500 text-xl">MatchPoint</span>
         </div>
         <ul className="flex gap-x-5">
           <Link to="/" className="hover:text-orange-400">Inicio</Link>
           <Link to="/partidos" className="hover:text-orange-400">Partidos</Link>
           <Link to="/crear-partido" className="hover:text-orange-400">Crear Partido</Link>
+          {user && user.premium ? (
+  <p className="text-green-500">¡Eres usuario Premium!</p>
+) : (
+  <Link to="/premium" className="hover:text-orange-400">Premium</Link>
+)}
+
         </ul>
       </div>
 
@@ -48,9 +54,7 @@ function Navbar() {
             </>
           ) : (
             <>
-              <li>
-                <Link to={"/login"} className="hover:text-orange-400">Mi perfil</Link>
-              </li>
+             
               <li></li>
               <li>
                 <Link to={"/login"} className="hover:text-orange-400">Login</Link>

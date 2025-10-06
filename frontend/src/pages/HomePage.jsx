@@ -1,6 +1,10 @@
 import { useState } from "react";
+import { useAuth } from "../context/AuthContext";
+
 
 function HomePage() {
+  const { isAuthenticated, user } = useAuth();
+    const [mensaje_error, setMensaje] = useState(null);
   const [posts, setPosts] = useState([
     {
       id: 1,
@@ -36,9 +40,16 @@ function HomePage() {
   const handlePostSubmit = () => {
     if (!newPost.content && !newPost.image) return;
 
+    if (!isAuthenticated) {
+      setMensaje("Por favor, inicia sesión para poder publicar.");
+      setTimeout(() => setMensaje(null), 4000);
+      return;
+    }
+
+
     const post = {
       id: posts.length + 1,
-      username: "usuario_demo",
+      username: user.username || "usuario",
       avatar: "https://i.pravatar.cc/40",
       content: newPost.content,
       image: newPost.image,
@@ -50,8 +61,14 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
-      
+
+    <div className="min-h-screen bg-gray-50 text-gray-900 rounded-lg flex flex-col">
+{mensaje_error && (
+  <div className="bg-red-500 text-white px-4 py-2 rounded-md mb-6 text-center max-w-sm mx-auto shadow-md">
+    {mensaje_error}
+  </div>
+)}
+
       {/* Main */}
       <main className="max-w-4xl mx-auto px-4 py-8">
         {/* Crear Post */}

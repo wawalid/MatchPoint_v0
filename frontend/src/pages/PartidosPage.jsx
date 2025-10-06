@@ -1,7 +1,12 @@
 import { useState, useEffect } from "react";
 import { usePartidos } from "../context/PartidosContext";
+import { useAuth } from "../context/AuthContext";
+
+
 
 function HomePage() {
+  const { isAuthenticated, logout, user } = useAuth();
+
   const [filters, setFilters] = useState({
     deporte: "Todos",
     fecha: "",
@@ -44,7 +49,7 @@ function HomePage() {
   });
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-white text-gray-900 rounded-lg ">
       <main className="flex max-w-7xl mx-auto px-8 py-10 gap-12">
         {/* Sidebar filtros */}
         <aside className="w-1/4 space-y-6">
@@ -91,10 +96,12 @@ function HomePage() {
               }
             />
           </div>
-          <div className="bg-gray-100 p-6 text-center rounded-lg border">
-            <p className="font-semibold text-gray-700">Anuncio</p>
-            <p className="text-sm text-gray-500">Promociona tu evento aquí</p>
-          </div>
+          {!user?.premium && (
+            <div className="bg-gray-100 p-6 text-center rounded-lg border">
+              <p className="font-semibold text-gray-700">Anuncio</p>
+              <p className="text-sm text-gray-500">Promociona tu evento aquí</p>
+            </div>
+          )}
         </aside>
 
         {/* Feed de partidos */}
@@ -135,11 +142,13 @@ function HomePage() {
                     Unirse
                   </button>
                 </div>
-                
+
               ))}
-               <div className="border rounded-lg shadow-sm p-5 flex items-center justify-center bg-gray-100">
-                <p className="text-gray-500">Anuncio - Tu marca aquí</p>
-              </div>
+              {!user?.premium && (
+                <div className="border rounded-lg shadow-sm p-5 flex items-center justify-center bg-gray-100">
+                  <p className="text-gray-500">Anuncio - Tu marca aquí</p>
+                </div>
+              )}
             </div>
           )}
         </section>

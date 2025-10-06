@@ -2,24 +2,26 @@ import { z } from "zod";
 
 export const registerSchema = z.object({
   username: z.string({
-    required_error: "username is required",
-  }),
+    required_error: "El nombre de usuario es obligatorio",
+  })
+  .min(2, { message: "El nombre de usuario debe tener al menos 2 caracteres" })
+  ,
   password: z
     .string({
-      required_error: "Password is required",
+      required_error: "La contraseña es obligatoria",
     })
     .min(6, {
-      message: "Password must be at least 6 characters long",
+      message: "La contraseña debe tener al menos 6 caracteres",
     }),
 });
 
 export const loginSchema = z.object({
   username: z
-    .string({ required_error: "username is required" })
-    .min(2, { message: "username must be at least 2 characters long" }),
+    .string({ required_error: "El nombre de usuario es obligatorio" })
+    .min(2, { message: "El nombre de usuario debe tener al menos 2 caracteres" }),
   password: z
-    .string({ required_error: "Password is required" })
-    .min(6, { message: "Password must be at least 6 characters long" }),
+    .string({ required_error: "La contraseña es obligatoria" })
+    .min(6, { message: "La contraseña debe tener al menos 6 caracteres" }),
 });
 
 export const profileSchema = z.object({

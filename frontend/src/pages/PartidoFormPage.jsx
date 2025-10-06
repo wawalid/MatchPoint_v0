@@ -2,10 +2,13 @@ import { useForm } from "react-hook-form";
 // import { usePartidos } from "../context/PartidosContext"; // Context adaptado a partidos
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
+import { usePartidos } from "../context/PartidosContext";
+
+
 
 function PartidoFormPage() {
   const { register, handleSubmit, setValue } = useForm();
-  // const { createPartido, getPartido, updatePartido } = usePartidos();
+  const { createPartido, getPartido, updatePartido } = usePartidos();
   const navigate = useNavigate();
   const params = useParams();
 
@@ -54,7 +57,7 @@ function PartidoFormPage() {
             type="text"
             placeholder="Ej: Partido de Fútbol"
             {...register("titulo", { required: true })}
-            className="w-full bg-zinc-300 text-white px-4 py-2 rounded-md placeholder-gray-800"
+            className="w-full bg-zinc-300 text-gray-900 px-4 py-2 rounded-md placeholder-gray-800"
             autoFocus
           />
         </div>
@@ -72,6 +75,7 @@ function PartidoFormPage() {
             <option value="Tenis">Tenis</option>
             <option value="Voleibol">Voleibol</option>
             <option value="Pádel">Pádel</option>
+            <option value="Pádel">Gimnasio</option>
           </select>
         </div>
 

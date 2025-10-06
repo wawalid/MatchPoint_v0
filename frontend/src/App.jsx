@@ -13,7 +13,9 @@ import TaskFormPage from "./pages/TaskFormPage";
 import ProfilePage from "./pages/ProfilePage";
 import PartidoFormPage from "./pages/PartidoFormPage";
 import PartidosPage from "./pages/PartidosPage";
+import PremiumPage from "./pages/PremiumPage";
 
+import Auth_ProtectedRoute from "./ProtectedRoute";
 
 
 function App() {
@@ -33,8 +35,12 @@ function App() {
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/profile" element={<ProfilePage />} />
-                  <Route path="/crear-partido" element={<PartidoFormPage />} />
-                  <Route path="/partidos" element={<PartidosPage />} />
+                  <Route element={<Auth_ProtectedRoute />}>
+
+                    <Route path="/crear-partido" element={<PartidoFormPage />} />
+                    <Route path="/partidos" element={<PartidosPage />} />
+                    <Route path="/premium" element={<PremiumPage />} />
+                  </Route>
                 </Route>
                 <Route path="*" element={<h1>404 Not Found</h1>} />
               </Routes>

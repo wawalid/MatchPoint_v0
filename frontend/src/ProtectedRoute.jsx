@@ -9,11 +9,13 @@ function Auth_ProtectedRoute() {
         return <h1>Loading...</h1>
     }
     if (!loading && !isAuthenticated) {
-        return <Navigate to="/login" replace={true} /> 
+        return <Navigate to="/login" replace={true}
+                state={{ message: "Por favor inicia sesion para poder usar las funciones de la app." }}
+ /> 
     }
-    if (!loading && !user.is_verified) {
-        return <Navigate to="/waiting-verification" replace={true} /> 
-    }
+    // if (!loading && !user.is_verified) {
+    //     return <Navigate to="/waiting-verification" replace={true} /> 
+    // }
 
 
     return <Outlet /> 

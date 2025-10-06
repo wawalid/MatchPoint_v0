@@ -21,42 +21,77 @@ function RegisterPage() {
     })
 
     return (
-        <div className="flex items-center justify-center h-screen">
-            <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
-                <h1 className="text-2xl text-white">Register</h1>
-                {
-                    registerErrors.map((error, i) => (
-                        <div className="bg-red-500 p-2 text-white my-2" key={i}>
-                            {error}
-                        </div>
-                    ))
-                }
-                <form onSubmit={onSubmit}>
-                    <input type="text" {...register("username", { required: true })}
-                        className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-                        placeholder="Username"
-                    />
-                    {errors.username && <p className="text-red-500">Username is required</p>}
+       <div className="flex items-center justify-center min-h-screen bg-white">
+  <div className="bg-white max-w-md w-full p-10 rounded-2xl shadow-lg border border-gray-200">
+    <h1 className="text-3xl font-bold text-gray-900 mb-6 text-center">Registro</h1>
 
-                    {/* <input type="email" {...register("email", { required: true })}
-                        className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-                        placeholder="Email"
-                    />
-                    {errors.email && <p className="text-red-500">Email is required</p>} */}
+    {/* Errores */}
+    {registerErrors.map((error, i) => (
+      <div className="bg-red-500 p-2 text-white my-2 rounded" key={i}>
+        {error}
+      </div>
+    ))}
 
-                    <input type="password" {...register("password", { required: true })}
-                        className="w-full bg-zinc-700 text-white px-4 py-2 rounded-md my-2"
-                        placeholder="Password"
-                    />
-                    {errors.password && <p className="text-red-500">Password is required</p>}
+    <form onSubmit={onSubmit} className="space-y-4">
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Usuario</label>
+        <input
+          type="text"
+          {...register("username", { required: true })}
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-900"
+          placeholder="Nombre de usuario"
+        />
+        {errors.username && (
+          <p className="text-red-500 text-sm mt-1">El usuario es obligatorio</p>
+        )}
+      </div>
 
-                    <button type="submit">
-                        Register
-                    </button>
-                </form>
-                <p className="flex gap-x-2 justify-between text-white mt-4">Already have an account? <Link to="/login" className="text-blue-500">Login</Link></p>
-            </div>
-        </div>
+      {/* Si quieres habilitar email en el futuro, puedes descomentar este bloque */}
+      {/* 
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input
+          type="email"
+          {...register("email", { required: true })}
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500"
+          placeholder="Email"
+        />
+        {errors.email && (
+          <p className="text-red-500 text-sm mt-1">El email es obligatorio</p>
+        )}
+      </div>
+      */}
+
+      <div>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
+        <input
+          type="password"
+          {...register("password", { required: true })}
+          className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-orange-500 text-gray-900"
+          placeholder="Contraseña"
+        />
+        {errors.password && (
+          <p className="text-red-500 text-sm mt-1">La contraseña es obligatoria</p>
+        )}
+      </div>
+
+      <button
+        type="submit"
+        className="w-full bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 rounded-lg mt-2 transition-colors"
+      >
+        Registrarse
+      </button>
+    </form>
+
+    <p className="flex gap-x-2 justify-center text-gray-700 mt-6 text-sm">
+      ¿Ya tienes cuenta?{" "}
+      <Link to="/login" className="text-orange-500 font-medium hover:underline">
+        Iniciar sesión
+      </Link>
+    </p>
+  </div>
+</div>
+
 
 
 

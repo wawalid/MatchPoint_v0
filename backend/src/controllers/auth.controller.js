@@ -25,18 +25,9 @@ export const verifyToken = async (req, res) => {
 
     return res.json({
       id: userFound._id,
-      fullname: userFound.fullname,
+      username: userFound.username,
       email: userFound.email,
-      // id_afiliado: userFound.id_afiliado,
-      // is_verified: userFound.is_verified,
-      // dni: userFound.dni,
-      // cuenta_bancaria: userFound.cuenta_bancaria,
-      // identidad: userFound.identidad,
-      // completado: userFound.completado,
-      // is_admin: userFound.is_admin,
-      // rrss_1: userFound.rrss_1,
-      // rrss_2: userFound.rrss_2,
-      // rrss_3: userFound.rrss_3,
+      premium: userFound.premium,
       createdAt: userFound.createdAt,
     });
   });
@@ -86,7 +77,7 @@ export const login = async (req, res) => {
 
   try {
     const userFound = await User.findOne({ username });
-    if (!userFound) return res.status(400).json(["User not found"]);
+    if (!userFound) return res.status(400).json(["Usuario no encontrado"]);
 
     const isMatch = await bcrypt.compare(password, userFound.password);
     if (!isMatch) return res.status(400).json(["Invalid password"]);
@@ -99,7 +90,7 @@ export const login = async (req, res) => {
 
     res.json({
       id: userFound._id,
-      fullname: userFound.fullname,
+      username: userFound.username,
       // email: userFound.email,
       // id_afiliado: userFound.id_afiliado,
       // dni: userFound.dni,
