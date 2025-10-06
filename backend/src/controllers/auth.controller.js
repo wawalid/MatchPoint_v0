@@ -5,6 +5,11 @@ import { createAccessToken } from "../libs/jwt.js";
 import jwt from "jsonwebtoken";
 import { TOKEN_SECRET } from "../config.js";
 
+import dotenv from "dotenv";
+dotenv.config();
+
+export const MONGODB_URI = process.env.MONGODB_URI;
+
 const cookieOptions = {
   httpOnly: process.env.NODE_ENV === "production",
   secure: process.env.NODE_ENV === "production",
@@ -14,7 +19,16 @@ const cookieOptions = {
 
 export const verifyToken = async (req, res) => {
   const { token } = req.cookies;
-  console.log("token en el backend", token);
+  // console.log("token en el backend", token);
+
+  let db_connection = "🔴 BD no conectada";
+  if (process.env.MONGODB_URI?.startsWith("mongodb+srv://")) {
+    db_connection = "🟢 BD conectada a Atlas";
+  } else {
+    db_connection = "🟠 BD conectada a Local";
+  }
+
+
   if (!token) return res.status(401).json({ message: "Unauthorized" });
 
   jwt.verify(token, TOKEN_SECRET, async (err, user) => {
@@ -23,12 +37,14 @@ export const verifyToken = async (req, res) => {
     const userFound = await User.findById(user.id);
     if (!userFound) return res.status(401).json({ message: "User not found" });
 
+
     return res.json({
       id: userFound._id,
       username: userFound.username,
       email: userFound.email,
       premium: userFound.premium,
       createdAt: userFound.createdAt,
+      db_connection: db_connection,
     });
   });
 };
@@ -119,12 +135,7 @@ export const profile = async (req, res) => {
 };
 
 export const updateUser = async (req, res) => {
-  const {
-    username,
-    email,
-    password,
-    dni
-  } = req.body;
+  const { username, email, password, dni } = req.body;
   const userFound = await User.findById(req.user.id);
   if (!userFound) return res.status(400).json({ message: "User not found" });
 
