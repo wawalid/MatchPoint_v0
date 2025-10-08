@@ -3,10 +3,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { TaskProvider } from "./context/TasksContext";
 import { PartidoProvider } from "./context/PartidosContext";
+import Auth_ProtectedRoute from "./ProtectedRoute";
+import MainLayout from "./layouts/MainLayout";
 
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import MainLayout from "./layouts/MainLayout";
 import HomePage from "./pages/HomePage";
 import TaskPage from "./pages/TaskPage";
 import TaskFormPage from "./pages/TaskFormPage";
@@ -14,8 +15,7 @@ import ProfilePage from "./pages/ProfilePage";
 import PartidoFormPage from "./pages/PartidoFormPage";
 import PartidosPage from "./pages/PartidosPage";
 import PremiumPage from "./pages/PremiumPage";
-
-import Auth_ProtectedRoute from "./ProtectedRoute";
+import PartidoDetalle from "./pages/PartidoDetalle";
 
 
 function App() {
@@ -39,6 +39,8 @@ function App() {
 
                     <Route path="/crear-partido" element={<PartidoFormPage />} />
                     <Route path="/partidos" element={<PartidosPage />} />
+                            <Route path="/partido/:id" element={<PartidoDetalle />} />
+
                     <Route path="/premium" element={<PremiumPage />} />
                   </Route>
                 </Route>

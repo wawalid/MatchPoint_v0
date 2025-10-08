@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { usePartidos } from "../context/PartidosContext";
 import { useAuth } from "../context/AuthContext";
-
-
+import { useNavigate } from "react-router-dom"; // arriba de tu componente principal
 
 function HomePage() {
   const { isAuthenticated, logout, user } = useAuth();
+  const navigate = useNavigate();
 
   const [filters, setFilters] = useState({
     deporte: "Todos",
@@ -69,8 +69,11 @@ function HomePage() {
               <option>Tenis</option>
               <option>Voleibol</option>
               <option>Pádel</option>
-              <option>Gimnasio</option>
-
+              {/* <option>Running</option>
+              <option>Ciclismo</option>
+              <option>Natación</option>
+              <option>Senderismo</option> */}
+              {/* <option>Gimnasio</option> */}
             </select>
           </div>
           <div>
@@ -116,9 +119,10 @@ function HomePage() {
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filteredPartidos.map((partido) => (
                 <div
-                  key={partido._id}
-                  className="border rounded-lg shadow-sm p-5 flex flex-col justify-between"
-                >
+  key={partido._id}
+  onClick={() => navigate(`/partido/${partido._id}`)}
+  className="border rounded-lg shadow-sm p-5 flex flex-col justify-between cursor-pointer hover:shadow-md transition-shadow duration-200"
+>
                   <div>
                     <h3 className="font-bold text-lg mb-1">{partido.titulo}</h3>
                     <p className="text-sm text-gray-600">{partido.deporte}</p>
@@ -142,7 +146,6 @@ function HomePage() {
                     Unirse
                   </button>
                 </div>
-
               ))}
               {!user?.premium && (
                 <div className="border rounded-lg shadow-sm p-5 flex items-center justify-center bg-gray-100">

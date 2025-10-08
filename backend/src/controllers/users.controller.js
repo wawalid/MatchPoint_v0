@@ -25,24 +25,24 @@ export const getUserbyID = async (req, res) => {
 
 
 
-export const updateActiveUser = async (req, res) => {
-  const { id } = req.params;
+// export const updateActiveUser = async (req, res) => {
+  // const { id } = req.params;
 
-  try {
-    const user = await User.findById(id);
-    if (user.is_admin) {
-      return res.status(400).json({ message: "Cannot update admin user" });
-    }
+  // try {
+  //   const user = await User.findById(id);
+  //   if (user.is_admin) {
+  //     return res.status(400).json({ message: "Cannot update admin user" });
+  //   }
 
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
+  //   if (!user) {
+  //     return res.status(404).json({ message: "User not found" });
+  //   }
 
-    user.is_verified = !user.is_verified;
-    const updatedUser = await user.save();
+  //   user.is_verified = !user.is_verified;
+  //   const updatedUser = await user.save();
 
-    res.json(updatedUser);
-  } catch (error) {
-    return res.status(500).json({ message: "Error updating user" });
-  }
-};
+  //   res.json(updatedUser);
+  // } catch (error) {
+  //   return res.status(500).json({ message: "Error updating user" });
+  // }
+// };

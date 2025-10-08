@@ -12,6 +12,7 @@ const userSchema = new mongoose.Schema(
     dni: { type: String, default: null },
     premium: { type: Boolean, default: false },
     fecha_registro: { type: Date, default: Date.now },
+    reputacion : { type: Number, default: 0 },
   },
   {
     timestamps: true,
