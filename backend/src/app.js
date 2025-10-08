@@ -22,7 +22,7 @@ const allowedOrigins = [
   // "https://front-production-aa1f.up.railway.app",
   // "https://frontend-render-cx1g.onrender.com"
   "102.168.1.151",
-  "https://4542gvzg-5173.uks1.devtunnels.ms",
+  "https://matchpoint-v0-frontend.onrender.com"
 ];
 
 app.use(cors({
