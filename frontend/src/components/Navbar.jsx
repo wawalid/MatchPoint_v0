@@ -12,7 +12,9 @@ function Navbar() {
       {/* Logo + Título + Links juntos a la izquierda */}
       <div className="flex items-center gap-8">
         <div className="flex items-center gap-2">
-          <img src="../../media/baloncesto_2.png" alt="MatchPoint Logo" className="w-8 h-8" />
+          {/* <img src="../../media/baloncesto_2.png" alt="MatchPoint Logo" className="w-8 h-8" /> */}
+          
+          <img src="https://i.postimg.cc/xCggPBmH/imatge-2025-10-08-191207782.png" alt="MatchPoint Logo" className="w-10 h-8" />
           <span className="font-bold text-orange-500 text-xl">MatchPoint</span>
         </div>
         <ul className="flex gap-x-5">

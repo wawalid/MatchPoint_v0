@@ -34,6 +34,7 @@ export const PartidoProvider = ({ children }) => {
       setLoading(true);
       const res = await getPartidosRequest();
       setPartidos(res.data);
+      console.log("Partidos cargados:", res.data);
     } catch (error) {
       console.error("Error obteniendo partidos:", error);
     } finally {

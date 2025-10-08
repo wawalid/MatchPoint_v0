@@ -24,7 +24,7 @@ export const createPartido = async (req, res) => {
 
 export const getPartidos = async (req, res) => {
   try {
-    const partidos = await Partido.find();
+    const partidos = await Partido.find().populate("creador", "username reputacion").populate("jugadores", "username reputacion");
     res.json(partidos);
   } catch (error) {
     return res.status(500).json({ message: "Error retrieving partidos" });
@@ -36,8 +36,8 @@ export const getPartidos = async (req, res) => {
 export const getPartido = async (req, res) => {
   try {
     const partido = await Partido.findById(req.params.id)
-      .populate("creador", "username email")
-      .populate("jugadores", "username email");
+      .populate("creador", "username reputacion")
+      .populate("jugadores", "username reputacion");
 
     if (!partido) {
       return res.status(404).json({ message: "Partido no encontrado" });
@@ -89,7 +89,7 @@ export const deletePartido = async (req, res) => {
 // Unirse o salir de un partido
 export const toggleJoinPartido = async (req, res) => {
   try {
-    const partido = await Partido.findById(req.params.id).populate("jugadores", "username");
+    const partido = await Partido.findById(req.params.id).populate("jugadores", "username reputacion");
     if (!partido) {
       return res.status(404).json({ status: "error", message: "Partido no encontrado" });
     }
@@ -105,7 +105,7 @@ export const toggleJoinPartido = async (req, res) => {
         (jugador) => jugador._id.toString() !== userId.toString()
       );
       await partido.save();
-      const updated = await Partido.findById(req.params.id).populate("jugadores", "username");
+      const updated = await Partido.findById(req.params.id).populate("jugadores", "username reputacion");
       return res.json({ status: "ok", message: "Has salido del partido", partido: updated });
     } else {
       // Verificar límite de jugadores
@@ -116,7 +116,7 @@ export const toggleJoinPartido = async (req, res) => {
 
       partido.jugadores.push(userId);
       await partido.save();
-      const updated = await Partido.findById(req.params.id).populate("jugadores", "username");
+      const updated = await Partido.findById(req.params.id).populate("jugadores", "username reputacion");
       return res.json({ status: "ok", message: "Te has unido al partido", partido: updated });
     }
   } catch (error) {

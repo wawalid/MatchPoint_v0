@@ -21,8 +21,6 @@ export default function PartidoDetalle() {
     fetchPartido();
   }, [id]);
 
-  
-
   if (!partido) return <p className="text-center mt-10">Cargando...</p>;
 
   return (
@@ -65,10 +63,20 @@ export default function PartidoDetalle() {
       <div className="mt-6 text-black">
         <h2 className="text-lg font-semibold mb-2">Jugadores apuntados</h2>
         {partido.jugadores && partido.jugadores.length > 0 ? (
-          <ul className="list-disc list-inside text-gray-700 space-y-1">
-            {partido.jugadores.map((jugador, index) => (
-              <li key={index}>{jugador.username} - {jugador.reputacion || 0} puntos</li>
-            ))}
+          <ul className="list-disc list-inside space-y-1">
+            {partido.jugadores.map((jugador, index) => {
+              const rep = jugador.reputacion || 0;
+              let colorClass = "text-gray-700"; // por defecto
+
+              if (rep > 0) colorClass = "text-green-600";
+              else if (rep < 0) colorClass = "text-red-600";
+
+              return (
+                <li key={index} className={colorClass}>
+                  {jugador.username} | {rep} puntos
+                </li>
+              );
+            })}
           </ul>
         ) : (
           <p className="text-gray-500">Aún no hay jugadores apuntados.</p>
@@ -81,18 +89,17 @@ export default function PartidoDetalle() {
       </p>
 
       {/* Botón unirse */}
-     <button
-  onClick={async () => {
-    const updated = await unirse_salirPartido(partido._id);
-    if (updated) setPartido(updated); // 👈 solo si el backend confirma "ok"
-  }}
-  className="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg w-full"
->
-  {partido.jugadores.some((j) => j._id === user.id)
-    ? "Salir del partido"
-    : "Unirse al partido"}
-</button>
-
+      <button
+        onClick={async () => {
+          const updated = await unirse_salirPartido(partido._id);
+          if (updated) setPartido(updated); // 👈 solo si el backend confirma "ok"
+        }}
+        className="mt-6 bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg w-full"
+      >
+        {partido.jugadores.some((j) => j._id === user.id)
+          ? "Salir del partido"
+          : "Unirse al partido"}
+      </button>
     </div>
   );
 }
