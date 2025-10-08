@@ -69,6 +69,7 @@ function HomePage() {
               <option>Tenis</option>
               <option>Voleibol</option>
               <option>Pádel</option>
+              <option>Otro deporte</option>
               {/* <option>Running</option>
               <option>Ciclismo</option>
               <option>Natación</option>

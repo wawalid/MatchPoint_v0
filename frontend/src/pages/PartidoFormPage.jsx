@@ -75,6 +75,7 @@ function PartidoFormPage() {
             <option value="Tenis">Tenis</option>
             <option value="Voleibol">Voleibol</option>
             <option value="Pádel">Pádel</option>
+            <option value="Pádel">Otro deporte</option>
             {/* <option value="Running">Running</option>
             <option value="Ciclismo">Ciclismo</option>
             <option value="Natación">Natación</option>
@@ -131,7 +132,7 @@ function PartidoFormPage() {
           <label className="text-gray-700 mb-1">Ciudad</label>
           <input
             type="text"
-            placeholder="Ej: Madrid"
+            placeholder="Ej: Barcelona"
             {...register("ciudad", { required: true })}
             className="w-full bg-zinc-300 text-gray-900 px-4 py-2 rounded-md placeholder-gray-800"
           />

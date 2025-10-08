@@ -114,7 +114,11 @@ function ProfilePage() {
           <h3 className="text-xl font-semibold text-gray-800 mb-4">Mis partidos creados</h3>
           {partidos && partidos.length > 0 ? (
             <div className="grid gap-4">
-              {partidos
+              <p className="text-gray-500 text-sm mt-4">
+                En un futuro se podrán ver los partidos creados por el usuario
+              </p>
+
+              {/* {partidos
                 .filter((p) => p.creador?._id === user?._id)
                 .map((partido) => (
                   <div
@@ -129,7 +133,7 @@ function ProfilePage() {
                       Jugadores: {partido.jugadores.length}/{partido.max_jugadores}
                     </p>
                   </div>
-                ))}
+                ))} */}
             </div>
           ) : (
             <p className="text-gray-500 text-sm mt-4">No has creado ningún partido aún.</p>
