@@ -15,27 +15,22 @@ const app = express();
 
 // 👇 Añade aquí tu dominio de frontend en producción
 const allowedOrigins = [
-  "http://localhost:5173",
-  // "http://26.153.190.16:5173",
-  // "http://192.168.1.146:5173",
-  // "http://192.168.0.27:5173",
-  // "https://front-production-aa1f.up.railway.app",
-  // "https://frontend-render-cx1g.onrender.com"
-  "102.168.1.151",
-  "https://matchpoint-v0-frontend.onrender.com"
+  "http://localhost:5173", // desarrollo
+  "https://matchpoint-v0-frontend.onrender.com" // producción
 ];
 
 app.use(cors({
   origin: function(origin, callback) {
-    if (!origin) return callback(null, true); 
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
+    console.log("Request from origin:", origin); // útil para debug
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
     } else {
-      return callback(new Error("No permitido por CORS: " + origin));
+      callback(null, false);
     }
   },
-  credentials: true,
+  credentials: true, // necesario si usas cookies o auth
 }));
+
 
 app.use(morgan('dev'));
 app.use(express.json({ limit: "10mb" })); // o más, según lo grande que sean tus imágenes
