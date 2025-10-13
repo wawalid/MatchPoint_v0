@@ -16,7 +16,8 @@ const app = express();
 // 👇 Añade aquí tu dominio de frontend en producción
 const allowedOrigins = [
   "http://localhost:5173", // desarrollo
-  "https://matchpoint-v0-frontend.onrender.com", // producción
+  "https://matchpoint-v0-frontend.onrender.com", // producción en render
+  "https://match-point-v0-frontend.vercel.app", // producción en vercel
   "https://matchpoint.walid.es" // lo mismo pero con mi dominio
 ];
 
