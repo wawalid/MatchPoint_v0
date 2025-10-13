@@ -9,13 +9,15 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const MONGODB_URI = process.env.MONGODB_URI;
+const isProduction = process.env.NODE_ENV === "production";
 
 const cookieOptions = {
-  httpOnly: process.env.NODE_ENV === "production",
-  secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
-  expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 días
+  httpOnly: isProduction,
+  secure: isProduction,
+  sameSite: isProduction ? "none" : "lax",
+  expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
 };
+
 
 export const verifyToken = async (req, res) => {
   const { token } = req.cookies;
