@@ -18,14 +18,35 @@ function ChangelogPage() {
         <div className="space-y-4">
           <div className="p-4 bg-gray-100 rounded-lg border-l-4 border-blue-500">
             <h2 className="font-semibold text-lg text-gray-900">Futuros cambios</h2>
+            <p className="text-gray-700 text-sm">- Al crear un partido estas dentro automaticamente.</p>
             <p className="text-gray-700 text-sm">- Se pueden editar y borrar partidos (solo si eres el creador).</p>
-            <p className="text-gray-700 text-sm">- Perfil de usuario con posibilidad de cambiar username y password.</p>
-                        <p className="text-gray-700 text-sm">- Footer con links a redes sociales y demas.</p>
+            <p className="text-gray-700 text-sm">- Ver los puntos en el perfil.</p>
             <p className="text-gray-700 text-sm">- Mejorar sistema de reputacion (actualmente no funciona del todo).</p>
             <p className="text-gray-700 text-sm">- Mejorar sistema de usuarios premium (actualmente no funciona del todo).</p>
+            <p className="text-gray-700 text-sm">- Poder ver una especie de podio o top de jugadores con mas puntos.</p>
+            <p className="text-gray-700 text-sm">- Perfil de usuario con posibilidad de cambiar username y password.</p>
+            <p className="text-gray-700 text-sm">- Footer con links a redes sociales y demas.</p>
             <p className="text-gray-700 text-sm">- Mejorar diseño de la aplicacion (colores, fuentes, etc.).</p>
-            
-
+            <p className="text-gray-700 text-sm">- Añadir un sistema de mensajes de informacion para el usuario.</p>
+            <p className="text-gray-700 text-sm">- Añadir un sistema de notificaciones (para cuando alguien se une a un partido que has creado, etc.).</p>
+            <p className="text-gray-700 text-sm">- Añadir un sistema de valoraciones y comentarios para los partidos y usuarios.</p>
+            <p className="text-gray-700 text-sm">- Añadir mas filtros a la hora de buscar partidos (nivel, genero, etc.).</p>
+            <ul>
+              <li className="text-gray-700 text-sm">- Añadir mas deportes:</li>
+              {/* Lista de deportes a añadir */}
+              <li className="text-gray-700 text-sm">- Fútbol / Fútbol sala.</li>
+              <li className="text-gray-700 text-sm">- Baloncesto.</li>
+              <li className="text-gray-700 text-sm">- Vóley / Vóley playa.</li>
+              <li className="text-gray-700 text-sm">- Balonmano.</li>
+              <li className="text-gray-700 text-sm">- Béisbol.</li>
+              <li className="text-gray-700 text-sm">- Hockey sala.</li>
+              <li className="text-gray-700 text-sm">- Bádminton.</li>
+              <li className="text-gray-700 text-sm">- Ping pong.</li>
+              <li className="text-gray-700 text-sm">- Squash.</li>
+              <li className="text-gray-700 text-sm">- Calistenia / Street workout.</li>
+              <li className="text-gray-700 text-sm">- Entrenamientos funcionales en grupo.</li>
+              <li className="text-gray-700 text-sm">- Petanca.</li>
+            </ul>
           </div>
 
           <div className="p-4 bg-gray-100 rounded-lg border-l-4 border-blue-500">
