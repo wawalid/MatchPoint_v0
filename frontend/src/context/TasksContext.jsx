@@ -41,7 +41,7 @@ export function TaskProvider({ children }) {
   const createTask = async (task) => {
     try {
       const res = await createTaskRequest(task);
-      console.log(res.data);
+      // console.log(res.data);
     } catch (error) {
       return res.status(500).json({ message: "Error creating task" });
     }
@@ -60,7 +60,7 @@ export function TaskProvider({ children }) {
       const res = await deleteTaskRequest(id);
       if (res.status == 204) {
         setTasks(tasks.filter((task) => task._id !== id));
-        console.log("Task deleted successfully");
+        // console.log("Task deleted successfully");
       }
     } catch (error) {
       return res.status(500).json({ message: "Error deleting task" });

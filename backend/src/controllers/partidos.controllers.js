@@ -31,6 +31,17 @@ export const getPartidos = async (req, res) => {
   }
 };
 
+export const getPartidosByUser = async (req, res) => {
+  try {
+    const partidos = await Partido.find({ creador: req.user.id });
+    res.json(partidos);
+  } catch (error) {
+        console.error(error);
+
+    return res.status(500).json({ message: "Error retrieving partidos" });
+  }
+};
+
 
 // Obtener un partido por ID
 export const getPartido = async (req, res) => {

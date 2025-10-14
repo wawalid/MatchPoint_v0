@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
       const res = await registerRequest(user);
       setUser(res.data);
       setIsAuthenticated(true);
-      console.log("datos del usuario al registrarse", res.data);
+      // console.log("datos del usuario al registrarse", res.data);
     } catch (error) {
       console.log(error.response);
       setErrors(error.response.data);
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
       const res = await loginRequest(user);
       setUser(res.data);
       setIsAuthenticated(true);
-      console.log("datos del usuario al iniciar sesion", res.data);
+      // console.log("datos del usuario al iniciar sesion", res.data);
     } catch (error) {
       console.log(error.response);
       setErrors(error.response.data);
@@ -66,7 +66,7 @@ export const AuthProvider = ({ children }) => {
       const res = await updateUserRequest(user);
       setUser(res.data);
       setSuccesses(["Usuario actualizado correctamente"]);
-      console.log("datos del usuario al actualizar", res.data);
+      // console.log("datos del usuario al actualizar", res.data);
     } catch (error) {
       console.log(error.response);
       setErrors(error.response.data);
@@ -77,7 +77,7 @@ export const AuthProvider = ({ children }) => {
   const getUsers = async (parametro = "") => {
     try {
       const res = await getUsersRequest(parametro);
-      console.log(res.data);
+      // console.log(res.data);
       setUsers(res.data);
     } catch (error) {
       console.log(error);
@@ -87,8 +87,8 @@ export const AuthProvider = ({ children }) => {
   const getUserbyID = async (id) => {
     try {
       const res = await getUserByIdRequest(id);
-      console.log(res.data);
-      console.log("datos del usuario al obtener por ID", res.data);
+      // console.log(res.data);
+      // console.log("datos del usuario al obtener por ID", res.data);
       setAffiliateUser(res.data);
     } catch (error) {
       console.log(error);
@@ -151,7 +151,7 @@ export const AuthProvider = ({ children }) => {
         setIsAuthenticated(true);
         setUser(res.data);
         setLoading(false);
-        console.log("datos del usuario al verificar token", res.data);
+        // console.log("datos del usuario al verificar token", res.data);
       } catch (error) {
         setIsAuthenticated(false);
         setUser(null);

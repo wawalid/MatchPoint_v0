@@ -47,7 +47,7 @@ function Navbar() {
                   onClick={() => {
                     logout();
                     const res = logoutRequest();
-                    console.log(res);
+                    // console.log(res);
                   }}
                 >
                   Log out

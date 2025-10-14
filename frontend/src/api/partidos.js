@@ -8,4 +8,5 @@ export const updatePartidoRequest = (id, partido) =>
   axios.put(`/partidos/${id}`, partido);
 export const deletePartidoRequest = (id) => axios.delete(`/partidos/${id}`);
 export const unirse_salirPartidoRequest = (id) => axios.post(`/partidos/${id}/unirse`);
-
+export const getPartidosByUserRequest = () => axios.get("/partidos_usuario");
+  

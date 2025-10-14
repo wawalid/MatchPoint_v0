@@ -5,7 +5,8 @@ import {
   createPartidoRequest,
   updatePartidoRequest,
   deletePartidoRequest,
-  unirse_salirPartidoRequest
+  unirse_salirPartidoRequest,
+  getPartidosByUserRequest
 } from "../api/partidos";
 
 const PartidoContext = createContext();
@@ -20,6 +21,7 @@ export const PartidoProvider = ({ children }) => {
   // 🔹 Estados globales
   const [partidos, setPartidos] = useState([]);          // lista completa
   const [partidoActual, setPartidoActual] = useState(null); // partido individual
+  const [partidosByUser, setPartidosByUser] = useState([]); // partidos por usuario
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
   const [successes, setSuccesses] = useState([]);
@@ -119,11 +121,25 @@ export const PartidoProvider = ({ children }) => {
     }
   };
 
+
+  // Obtener partidos por usuario
+ const getPartidosByUser = async () => {
+  try {
+    const res = await getPartidosByUserRequest();
+    console.log("Partidos del usuario:", res.data);
+    setPartidosByUser(res.data);
+  } catch (error) {
+    console.error("Error obteniendo partidos por usuario:", error);
+  }
+};
+
+
   // ============================================
   // 🔄 Cargar partidos al montar el provider
   // ============================================
   useEffect(() => {
     getPartidos();
+    // getPartidosByUser();
   }, []);
 
   return (
@@ -139,6 +155,8 @@ export const PartidoProvider = ({ children }) => {
         updatePartido,
         deletePartido,
         unirse_salirPartido,
+        getPartidosByUser,
+        partidosByUser,
       }}
     >
       {children}

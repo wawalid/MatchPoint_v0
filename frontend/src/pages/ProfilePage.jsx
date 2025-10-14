@@ -4,11 +4,12 @@ import { useAuth } from "../context/AuthContext";
 import { usePartidos } from "../context/PartidosContext";
 import { useLocation } from "react-router-dom";
 
+
 function ProfilePage() {
   const location = useLocation();
   const [mensaje_error, setMensaje] = useState(null);
   const { user, updateUser, errors: profileErrors, successes: profileSuccess } = useAuth();
-  const { partidos, getPartidos } = usePartidos();
+  const { partidosByUser, getPartidosByUser } = usePartidos();
 
   const {
     register,
@@ -22,8 +23,6 @@ function ProfilePage() {
     if (user) {
       setValue("username", user.username);
       setValue("password", "");
-      setValue("identidad", user.identidad || "");
-      setValue("dni", user.dni || "");
     }
   }, [user, setValue]);
 
@@ -37,9 +36,14 @@ function ProfilePage() {
   }, [location.state, user]);
 
   // Cargar partidos creados por el usuario
-  useEffect(() => {
-    if (user?._id) getPartidos(); // si ya tienes un filtro por usuario en el backend, perfecto
-  }, [user]);
+useEffect(() => {
+  if (user?._id)
+    console.log("usuario autenticado:", user._id);
+    getPartidosByUser();
+}, [user]);
+
+
+
 
   const onSubmit = async (data) => {
     if (!data.password) data.password = user.password;
@@ -112,32 +116,30 @@ function ProfilePage() {
         {/* Panel derecho - Lista de partidos */}
         <div className="flex-1">
           <h3 className="text-xl font-semibold text-gray-800 mb-4">Mis partidos creados</h3>
-          {partidos && partidos.length > 0 ? (
-            <div className="grid gap-4">
-              <p className="text-gray-500 text-sm mt-4">
-                En un futuro se podrán ver los partidos creados por el usuario
-              </p>
+      {partidosByUser && partidosByUser.length > 0 ? (
+  <div className="grid gap-4">
+    {partidosByUser.map((partido) => (
+      <div
+        key={partido._id}
+        className="p-4 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"
+      >
+        <h4 className="font-bold text-lg text-gray-800">{partido.titulo}</h4>
+        <p className="text-gray-600 text-sm mt-1">
+          {new Date(partido.fecha).toLocaleDateString()} - {partido.lugar}
+        </p>
+        <p className="text-gray-500 text-sm mt-2">
+          Jugadores: {partido.jugadores.length}/{partido.max_jugadores}
+        </p>
+        <p className="text-gray-500 text-sm mt-2">
+          Estado: {partido.estado}
+        </p>
+      </div>
+    ))}
+  </div>
+) : (
+  <p className="text-gray-500 text-sm mt-4">No has creado ningún partido aún.</p>
+)}
 
-              {/* {partidos
-                .filter((p) => p.creador?._id === user?._id)
-                .map((partido) => (
-                  <div
-                    key={partido._id}
-                    className="p-4 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg transition-shadow"
-                  >
-                    <h4 className="font-bold text-lg text-gray-800">{partido.titulo}</h4>
-                    <p className="text-gray-600 text-sm mt-1">
-                      {new Date(partido.fecha).toLocaleDateString()} - {partido.lugar}
-                    </p>
-                    <p className="text-gray-500 text-sm mt-2">
-                      Jugadores: {partido.jugadores.length}/{partido.max_jugadores}
-                    </p>
-                  </div>
-                ))} */}
-            </div>
-          ) : (
-            <p className="text-gray-500 text-sm mt-4">No has creado ningún partido aún.</p>
-          )}
         </div>
       </div>
     </div>
