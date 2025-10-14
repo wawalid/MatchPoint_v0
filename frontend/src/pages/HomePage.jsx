@@ -133,6 +133,10 @@ function HomePage() {
       {/* Footer */}
       <footer className="border-t mt-12 py-6 text-center text-sm text-gray-500">
         © {new Date().getFullYear()} MatchPoint. Todos los derechos reservados.
+        <br />
+        <a href="/changelog" className="text-orange-500 hover:underline">
+          Changelog
+        </a>
       </footer>
     </div>
   );

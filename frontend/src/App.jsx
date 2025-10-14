@@ -16,6 +16,7 @@ import PartidoFormPage from "./pages/PartidoFormPage";
 import PartidosPage from "./pages/PartidosPage";
 import PremiumPage from "./pages/PremiumPage";
 import PartidoDetalle from "./pages/PartidoDetalle";
+import ChangelogPage from "./pages/ChangelogPage";
 
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
                             <Route path="/partido/:id" element={<PartidoDetalle />} />
 
                     <Route path="/premium" element={<PremiumPage />} />
+                    <Route path="/changelog" element={<ChangelogPage />} />
                   </Route>
                 </Route>
                 <Route path="*" element={<h1>404 Not Found</h1>} />
