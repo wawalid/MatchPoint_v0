@@ -3,6 +3,12 @@ import Partido from "../models/partido.model.js"
 export const createPartido = async (req, res) => {
   try {
     const { titulo, descripcion, fecha, deporte, lugar, ciudad, max_jugadores } = req.body;
+    const creadorID = req.user.id;
+
+    if (!titulo || !fecha || !deporte || !lugar || !ciudad || !max_jugadores) {
+      return res.status(400).json({ status: "error", message: "Faltan campos obligatorios" });
+    }
+
     const nuevoPartido = new Partido({
       titulo,
       descripcion,
@@ -11,14 +17,23 @@ export const createPartido = async (req, res) => {
       lugar,
       ciudad,
       max_jugadores,
-      creador: req.user.id,
+      creador: creadorID,
+      jugadores: [creadorID],
     });
+
     const savedPartido = await nuevoPartido.save();
-    res.json(savedPartido);
+
+    res.json({
+      status: "ok",
+      message: "Partido creado correctamente",
+      partido: savedPartido,
+    });
   } catch (error) {
-    return res.status(500).json({ message: "Error creating partido" });
+    console.error(error);
+    return res.status(500).json({ status: "error", message: "Error al crear el partido" });
   }
 };
+
 
 
 
@@ -83,11 +98,21 @@ export const updatePartido = async (req, res) => {
 // Eliminar un partido
 export const deletePartido = async (req, res) => {
   try {
-    const partido = await Partido.findByIdAndDelete(req.params.id);
+    const partido = await Partido.findById(req.params.id);
 
     if (!partido) {
       return res.status(404).json({ message: "Partido no encontrado" });
     }
+
+    // Comprobar permisos
+    if (
+      partido.creador.toString() !== req.user.id &&
+      req.user.is_admin !== true
+    ) {
+      return res.status(403).json({ message: "No tienes permiso para eliminar este partido" });
+    }
+
+    await partido.deleteOne();
 
     res.json({ message: "Partido eliminado correctamente" });
   } catch (error) {
@@ -95,6 +120,7 @@ export const deletePartido = async (req, res) => {
     res.status(500).json({ message: "Error eliminando el partido" });
   }
 };
+
 
 
 // Unirse o salir de un partido
@@ -121,7 +147,7 @@ export const toggleJoinPartido = async (req, res) => {
     } else {
       // Verificar límite de jugadores
       if (partido.max_jugadores && partido.jugadores.length >= partido.max_jugadores) {
-        console.log("Intento de unirse a un partido completo");
+        console.log("Partido lleno :c");
         return res.status(400).json({ status: "error", message: "El partido ya está completo" });
       }
 

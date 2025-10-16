@@ -36,7 +36,7 @@ export const PartidoProvider = ({ children }) => {
       setLoading(true);
       const res = await getPartidosRequest();
       setPartidos(res.data);
-      console.log("Partidos cargados:", res.data);
+      // console.log("Partidos cargados:", res.data);
     } catch (error) {
       console.error("Error obteniendo partidos:", error);
     } finally {
@@ -44,15 +44,27 @@ export const PartidoProvider = ({ children }) => {
     }
   };
 
-  // Crear partido
-  const createPartido = async (partido) => {
-    try {
-      const res = await createPartidoRequest(partido);
-      setPartidos([...partidos, res.data]);
-    } catch (error) {
-      console.error("Error creando partido:", error);
+// Crear partido
+const createPartido = async (partido) => {
+  try {
+    const res = await createPartidoRequest(partido);
+
+    if (res.data.status === "ok") {
+      setPartidos((prev) => [...prev, res.data.partido]);
+      setSuccesses([res.data.message]);
+      setErrors([]);
+    } else {
+      setErrors([res.data.message || "Error al crear el partido"]);
+      setSuccesses([]);
     }
-  };
+  } catch (error) {
+    const message = error.response?.data?.message || "Error al crear el partido";
+    setErrors([message]);
+    setSuccesses([]);
+    console.error("Error creando partido:", message);
+  }
+};
+
 
   // Actualizar partido
   const updatePartido = async (id, partido) => {
@@ -70,23 +82,26 @@ export const PartidoProvider = ({ children }) => {
   };
 
   // Eliminar partido
-  const deletePartido = async (id) => {
-    try {
-      await deletePartidoRequest(id);
-      setPartidos((prev) => prev.filter((p) => p._id !== id));
+ const deletePartido = async (id) => {
+  try {
+    const res = await deletePartidoRequest(id);
+    setPartidos((prev) => prev.filter((p) => p._id !== id));
 
-      // Si el eliminado es el actual, limpiamos el estado individual
-      if (partidoActual && partidoActual._id === id) {
-        setPartidoActual(null);
-      }
-    } catch (error) {
-      console.error("Error eliminando partido:", error);
+    // Si el eliminado es el actual, limpiamos el estado individual
+    if (partidoActual && partidoActual._id === id) {
+      setPartidoActual(null);
     }
-  };
 
-  // ============================================
-  // ⚙️ Funciones para manejo de partido individual
-  // ============================================
+    setSuccesses([res.data?.message || "Partido eliminado correctamente aaa"]);
+  } catch (error) {
+    setErrors([error.response?.data?.message || "Error al eliminar el partido"]);
+    console.error("Error eliminando partido:", error);
+  }
+};
+
+
+  
+
 
   // Obtener un partido por ID
   const getPartido = async (id) => {
@@ -100,33 +115,40 @@ export const PartidoProvider = ({ children }) => {
   };
 
   // Unirse o salir del partido actual
-  const unirse_salirPartido = async (id) => {
-    try {
-      const res = await unirse_salirPartidoRequest(id);
-      if (res.data.status === "ok") {
-        // Actualizar partido individual
-        setPartidoActual(res.data.partido);
+// Unirse o salir del partido actual
+const unirse_salirPartido = async (id) => {
+  try {
+    const res = await unirse_salirPartidoRequest(id);
 
-        // Actualizar la lista global también
-        setPartidos((prev) =>
-          prev.map((p) => (p._id === id ? res.data.partido : p))
-        );
+    if (res.data.status === "ok") {
+      // Actualizar partido individual
+      setPartidoActual(res.data.partido);
 
-        return res.data.partido;
-      } else {
-        console.error(res.data.message);
-      }
-    } catch (error) {
-      console.error("Error al unirse/salir del partido:", error);
+      // Actualizar la lista global también
+      setPartidos((prev) =>
+        prev.map((p) => (p._id === id ? res.data.partido : p))
+      );
+
+      setSuccesses([res.data.message]);
+      setErrors([]); // limpiar errores anteriores
+      // console.log(res.data.message);
+      return res.data.partido;
     }
-  };
+  } catch (error) {
+    const message =
+      error.response?.data?.message || "Error al unirse o salir del partido";
+    setErrors([message]);
+    setSuccesses([]); // limpiar éxitos anteriores
+    console.error("Error al unirse/salir del partido:", message);
+  }
+};
 
 
   // Obtener partidos por usuario
  const getPartidosByUser = async () => {
   try {
     const res = await getPartidosByUserRequest();
-    console.log("Partidos del usuario:", res.data);
+    // console.log("Partidos del usuario:", res.data);
     setPartidosByUser(res.data);
   } catch (error) {
     console.error("Error obteniendo partidos por usuario:", error);
@@ -141,6 +163,24 @@ export const PartidoProvider = ({ children }) => {
     getPartidos();
     // getPartidosByUser();
   }, []);
+
+
+ useEffect(() => {
+  let timer;
+
+  if (errors.length > 0 || successes.length > 0) {
+    timer = setTimeout(() => {
+      setErrors([]);
+      setSuccesses([]);
+    }, 1500);
+  }
+
+  return () => clearTimeout(timer);
+}, [errors, successes]);
+
+
+
+
 
   return (
     <PartidoContext.Provider
@@ -157,6 +197,8 @@ export const PartidoProvider = ({ children }) => {
         unirse_salirPartido,
         getPartidosByUser,
         partidosByUser,
+        errors,
+        successes
       }}
     >
       {children}

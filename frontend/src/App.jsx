@@ -18,7 +18,6 @@ import PremiumPage from "./pages/PremiumPage";
 import PartidoDetalle from "./pages/PartidoDetalle";
 import ChangelogPage from "./pages/ChangelogPage";
 
-
 function App() {
   return (
     <div>
@@ -32,18 +31,19 @@ function App() {
                   <Route path="/tasks" element={<TaskPage />} />
                   <Route path="/add-task" element={<TaskFormPage />} />
                   <Route path="/tasks/:id" element={<TaskFormPage />} />
-                  <Route path="/profile" element={<ProfilePage />} />
                   <Route path="/login" element={<LoginPage />} />
                   <Route path="/register" element={<RegisterPage />} />
-                  <Route path="/profile" element={<ProfilePage />} />
+                  <Route path="/changelog" element={<ChangelogPage />} />
                   <Route element={<Auth_ProtectedRoute />}>
-
-                    <Route path="/crear-partido" element={<PartidoFormPage />} />
+                    <Route
+                      path="/crear-partido"
+                      element={<PartidoFormPage />}
+                    />
                     <Route path="/partidos" element={<PartidosPage />} />
-                            <Route path="/partido/:id" element={<PartidoDetalle />} />
+                    <Route path="/profile" element={<ProfilePage />} />
+                    <Route path="/partido/:id" element={<PartidoDetalle />} />
 
                     <Route path="/premium" element={<PremiumPage />} />
-                    <Route path="/changelog" element={<ChangelogPage />} />
                   </Route>
                 </Route>
                 <Route path="*" element={<h1>404 Not Found</h1>} />

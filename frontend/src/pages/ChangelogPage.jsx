@@ -18,9 +18,7 @@ function ChangelogPage() {
         <div className="space-y-4">
           <div className="p-4 bg-gray-100 rounded-lg border-l-4 border-blue-500">
             <h2 className="font-semibold text-lg text-gray-900">Futuros cambios</h2>
-            <p className="text-gray-700 text-sm">- Al crear un partido estas dentro automaticamente.</p>
             <p className="text-gray-700 text-sm">- Se pueden editar y borrar partidos (solo si eres el creador).</p>
-            <p className="text-gray-700 text-sm">- Ver los puntos en el perfil.</p>
             <p className="text-gray-700 text-sm">- Mejorar sistema de reputacion (actualmente no funciona del todo).</p>
             <p className="text-gray-700 text-sm">- Mejorar sistema de usuarios premium (actualmente no funciona del todo).</p>
             <p className="text-gray-700 text-sm">- Poder ver una especie de podio o top de jugadores con mas puntos.</p>
@@ -49,11 +47,23 @@ function ChangelogPage() {
             </ul>
           </div>
 
-          <div className="p-4 bg-gray-100 rounded-lg border-l-4 border-blue-500">
+          <div className="p-4 bg-gray-100 rounded-lg border-l-4 border-green-500">
+            <h2 className="font-semibold text-lg text-gray-900">v1.2.2 16/10/2025</h2>
+            <p className="text-gray-700 text-sm">- Los usuarios ya pueden borrar sus partidos.</p>
+            <p className="text-gray-700 text-sm">- Ya funciona el sistema de notificaciones.</p>
+          </div>
+
+
+          <div className="p-4 bg-gray-100 rounded-lg border-l-4 border-green-500">
+            <h2 className="font-semibold text-lg text-gray-900">v1.2.1 15/10/2025</h2>
+            <p className="text-gray-700 text-sm">- Al crear un partido estas dentro automaticamente.</p>
+            <p className="text-gray-700 text-sm">- Ver los puntos en el perfil.</p>
+          </div>
+
+          <div className="p-4 bg-gray-100 rounded-lg border-l-4 border-green-500">
             <h2 className="font-semibold text-lg text-gray-900">v1.2.0 14/10/2025</h2>
             <p className="text-gray-700 text-sm">- Se muestra la lista de partidos creados por el usuario en su perfil.</p>
             <p className="text-gray-700 text-sm">- Página de changelog (la que estás viendo ahora mismo).</p>
-
           </div>
 
           <div className="p-4 bg-gray-100 rounded-lg border-l-4 border-green-500">

@@ -43,8 +43,9 @@ export const verifyToken = async (req, res) => {
     return res.json({
       id: userFound._id,
       username: userFound.username,
-      email: userFound.email,
+      reputacion: userFound.reputacion,
       premium: userFound.premium,
+      is_admin: userFound.is_admin,
       createdAt: userFound.createdAt,
       db_connection: db_connection,
     });
@@ -75,7 +76,7 @@ export const register = async (req, res) => {
     res.json({
       id: userSaved._id,
       username: userSaved.username,
-      email: userSaved.email,
+      reputacion: userSaved.reputacion,
       premium: userSaved.premium,
       createdAt: userSaved.createdAt,
       updatedAt: userSaved.updatedAt,
@@ -105,6 +106,8 @@ export const login = async (req, res) => {
       id: userFound._id,
       username: userFound.username,
       premium: userFound.premium,
+      reputacion: userFound.reputacion,
+      is_admin: userFound.is_admin,
 
       // email: userFound.email,
       createdAt: userFound.createdAt,
