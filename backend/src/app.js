@@ -20,7 +20,8 @@ const allowedOrigins = [
   "https://match-point-v0-frontend.vercel.app", // producción en vercel
   "https://matchpoint.walid.es" // lo mismo pero con mi dominio,
   ,process.env.FRONTEND_URL,
-  "192.168.1.168:5173" // acceso local desde la red
+  "192.168.1.168:5173", // acceso local desde la red
+  "https://4542gvzg-5173.uks1.devtunnels.ms"
 
 ];
 

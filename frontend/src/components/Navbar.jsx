@@ -26,29 +26,42 @@ function Navbar() {
         </div>
 
         {/* Links principales (solo visibles en escritorio) */}
-        <ul className="hidden md:flex gap-x-5">
-          <Link to="/" className="hover:text-orange-400">
-            Inicio
-          </Link>
-          <Link to="/partidos" className="hover:text-orange-400">
-            Partidos
-          </Link>
-          <Link to="/crear-partido" className="hover:text-orange-400">
-            Crear Partido
-          </Link>
-          {user && user.premium ? (
-            <p className="text-green-500">¡Eres usuario Premium!</p>
-          ) : (
-            <Link to="/premium" className="hover:text-orange-400">
-              Premium
+        {/* 👇 AQUÍ ESTÁ LA CORRECCIÓN 👇 */}
+        <ul className="hidden md:flex items-center gap-x-5">
+          <li>
+            <Link to="/" className="hover:text-orange-400">
+              Inicio
             </Link>
+          </li>
+          <li>
+            <Link to="/partidos" className="hover:text-orange-400">
+              Partidos
+            </Link>
+          </li>
+          <li>
+            <Link to="/crear-partido" className="hover:text-orange-400">
+              Crear Partido
+            </Link>
+          </li>
+          {user && user.premium ? (
+            <li>
+              <p className="text-green-500">¡Eres usuario Premium!</p>
+            </li>
+          ) : (
+            <li>
+              <Link to="/premium" className="hover:text-orange-400">
+                Premium
+              </Link>
+            </li>
           )}
         </ul>
+        {/* 👆 FIN DE LA CORRECCIÓN 👆 */}
       </div>
 
       {/* Menú derecho (perfil, login...) */}
       <div className="hidden md:flex">
-        <ul className="flex gap-x-5 text-black">
+        {/* Esta lista ya estaba correcta 👍 */}
+        <ul className="flex gap-x-5 text-black items-center">
           {isAuthenticated ? (
             <>
               <li>
@@ -94,6 +107,7 @@ function Navbar() {
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
+            strokeWidth={2} // Añadido strokeWidth para que se vea la X
           >
             <line x1="18" y1="6" x2="6" y2="18" />
             <line x1="6" y1="6" x2="18" y2="18" />
@@ -105,6 +119,7 @@ function Navbar() {
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
+            strokeWidth={2} // Añadido strokeWidth para que se vean las líneas
           >
             <line x1="3" y1="6" x2="21" y2="6" />
             <line x1="3" y1="12" x2="21" y2="12" />
@@ -114,8 +129,10 @@ function Navbar() {
       </button>
 
       {/* Menú desplegable móvil */}
+      {/* (Opcional) He cambiado "items-center" por "items-start" y añadido "px-6"
+          para que el menú móvil se vea alineado a la izquierda, que suele ser más limpio */}
       {menuOpen && (
-        <div className="absolute top-full left-0 w-full bg-zinc-100 shadow-md rounded-b-lg py-5 flex flex-col items-center gap-4 md:hidden z-50">
+        <div className="absolute top-full left-0 w-full bg-zinc-100 shadow-md rounded-b-lg py-5 px-6 flex flex-col items-start gap-4 md:hidden z-50">
           <Link
             to="/"
             className="hover:text-orange-400"
@@ -148,6 +165,9 @@ function Navbar() {
               Premium
             </Link>
           )}
+
+          {/* Separador visual opcional */}
+          <hr className="w-full border-zinc-300 my-2" />
 
           {isAuthenticated ? (
             <>
