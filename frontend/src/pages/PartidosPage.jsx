@@ -53,7 +53,7 @@ function HomePage() {
   }, []);
   
   return (
-    <div className="min-h-screen bg-white text-gray-900 rounded-lg ">
+    <div className="min-h-screen bg-white text-gray-900 rounded-lg flex flex-col justify-between">
       {/* Las notificaciones están bien para responsive con 'absolute top-0 left-1/2...' */}
       <main className="relative flex flex-col lg:flex-row max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-10 gap-8 lg:gap-12">
         
@@ -192,7 +192,6 @@ function HomePage() {
         </section>
       </main>
 
-      {/* --- */}
 
       {/* Footer */}
       <footer className="border-t mt-8 py-6 text-center text-sm text-gray-500">

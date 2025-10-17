@@ -54,8 +54,12 @@ function Navbar() {
               </Link>
             </li>
           )}
+          <li>
+            <Link to="/ranking" className="hover:text-orange-400">
+              Ranking
+            </Link>
+          </li>
         </ul>
-        {/* 👆 FIN DE LA CORRECCIÓN 👆 */}
       </div>
 
       {/* Menú derecho (perfil, login...) */}

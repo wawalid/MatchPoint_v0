@@ -17,6 +17,7 @@ import PartidosPage from "./pages/PartidosPage";
 import PremiumPage from "./pages/PremiumPage";
 import PartidoDetalle from "./pages/PartidoDetalle";
 import ChangelogPage from "./pages/ChangelogPage";
+import RankingPage from "./pages/RankingPage";
 
 function App() {
   return (
@@ -35,15 +36,12 @@ function App() {
                   <Route path="/register" element={<RegisterPage />} />
                   <Route path="/changelog" element={<ChangelogPage />} />
                   <Route element={<Auth_ProtectedRoute />}>
-                    <Route
-                      path="/crear-partido"
-                      element={<PartidoFormPage />}
-                    />
+                  <Route path="/crear-partido" element={<PartidoFormPage />}/>
                     <Route path="/partidos" element={<PartidosPage />} />
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/partido/:id" element={<PartidoDetalle />} />
-
                     <Route path="/premium" element={<PremiumPage />} />
+                    <Route path="/ranking" element={<RankingPage />} />
                   </Route>
                 </Route>
                 <Route path="*" element={<h1>404 Not Found</h1>} />

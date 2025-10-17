@@ -61,37 +61,37 @@ const PremiumPage = () => {
               
               <div className="border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center bg-white shadow-sm hover:shadow-md transition-shadow">
                 <span className="text-orange-500 text-3xl mb-2">🚫</span>
-                <h3 className="font-semibold text-base mb-1">Sin anuncios</h3>
+                <h3 className="text-orange-500 font-semibold text-base mb-1">Sin anuncios</h3>
                 <p className="text-gray-600 text-xs">Disfruta de la plataforma sin interrupciones publicitarias.</p>
               </div>
 
               <div className="border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center bg-white shadow-sm hover:shadow-md transition-shadow">
                 <span className="text-orange-500 text-3xl mb-2">⭐</span>
-                <h3 className="font-semibold text-base mb-1">Prioridad en reservas</h3>
+                <h3 className="text-orange-500 font-semibold text-base mb-1">Prioridad en reservas</h3>
                 <p className="text-gray-600 text-xs">Asegura tu plaza en partidos populares antes que nadie.</p>
               </div>
 
               <div className="border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center bg-white shadow-sm hover:shadow-md transition-shadow">
                 <span className="text-orange-500 text-3xl mb-2">📈</span>
-                <h3 className="font-semibold text-base mb-1">Estadísticas avanzadas</h3>
+                <h3 className="text-orange-500 font-semibold text-base mb-1">Estadísticas avanzadas</h3>
                 <p className="text-gray-600 text-xs">Análisis completos de tu rendimiento y evolución como jugador.</p>
               </div>
 
               <div className="border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center bg-white shadow-sm hover:shadow-md transition-shadow">
                 <span className="text-orange-500 text-3xl mb-2">💬</span>
-                <h3 className="font-semibold text-base mb-1">Mensajería ilimitada</h3>
+                <h3 className="text-orange-500 font-semibold text-base mb-1">Mensajería ilimitada</h3>
                 <p className="text-gray-600 text-xs">Chatea sin restricciones con cualquier usuario de la comunidad.</p>
               </div>
 
               <div className="border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center bg-white shadow-sm hover:shadow-md transition-shadow">
                 <span className="text-orange-500 text-3xl mb-2">🏅</span>
-                <h3 className="font-semibold text-base mb-1">Perfil destacado</h3>
+                <h3 className="text-orange-500 font-semibold text-base mb-1">Perfil destacado</h3>
                 <p className="text-gray-600 text-xs">Tu perfil se verá primero en las búsquedas de otros jugadores.</p>
               </div>
               
               <div className="border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center bg-white shadow-sm hover:shadow-md transition-shadow">
                 <span className="text-orange-500 text-3xl mb-2">🏷️</span>
-                <h3 className="font-semibold text-base mb-1">Etiqueta Premium</h3>
+                <h3 className="text-orange-500 font-semibold text-base mb-1">Etiqueta Premium</h3>
                 <p className="text-gray-600 text-xs">Una insignia exclusiva para distinguirte en la plataforma.</p>
               </div>
 
