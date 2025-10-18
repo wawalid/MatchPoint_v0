@@ -73,8 +73,8 @@ const PremiumPage = () => {
 
               <div className="border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center bg-white shadow-sm hover:shadow-md transition-shadow">
                 <span className="text-orange-500 text-3xl mb-2">📈</span>
-                <h3 className="text-orange-500 font-semibold text-base mb-1">Estadísticas avanzadas</h3>
-                <p className="text-gray-600 text-xs">Análisis completos de tu rendimiento y evolución como jugador.</p>
+                <h3 className="text-orange-500 font-semibold text-base mb-1">Lorem</h3>
+                <p className="text-gray-600 text-xs">Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam odio reprehenderit doloribus harum eum animi aliquam quo itaque iusto debitis.</p>
               </div>
 
               <div className="border border-gray-100 rounded-xl p-4 flex flex-col items-center text-center bg-white shadow-sm hover:shadow-md transition-shadow">

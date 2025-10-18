@@ -6,10 +6,10 @@ function RankingPage() {
     { username: "JaviPro", puntos: 980, reputacion: 89, partidos: 38, premium: true },
     { username: "Lau_10", puntos: 940, reputacion: 86, partidos: 36, premium: false },
     { username: "Marcelo", puntos: 900, reputacion: 83, partidos: 35, premium: false },
-    { username: "AnaSport", puntos: 870, reputacion: 80, partidos: 33, premium: true },
-    { username: "NicoTeam", puntos: 820, reputacion: 77, partidos: 31, premium: false },
-    { username: "SaraGym", puntos: 790, reputacion: 74, partidos: 29, premium: false },
-    { username: "DaniRun", puntos: 750, reputacion: 71, partidos: 28, premium: false },
+    { username: "AnaSport", puntos: 870, reputacion: 89, partidos: 33, premium: true },
+    { username: "NicoTeam", puntos: 820, reputacion: 86, partidos: 31, premium: false },
+    { username: "SaraGym", puntos: 790, reputacion: 92, partidos: 29, premium: false },
+    { username: "DaniRun", puntos: 750, reputacion: 89, partidos: 28, premium: false },
   ];
 
   const getPositionStyle = (index) => {
