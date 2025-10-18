@@ -25,7 +25,7 @@ const PremiumPage = () => {
 
             <div className="my-6">
               <span className="text-5xl font-extrabold text-orange-500">
-                5.99€
+                3.99€
               </span>
               <span className="text-xl font-medium text-gray-600"> / mes</span>
             </div>

@@ -13,7 +13,7 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-zinc-100 text-black my-3 flex justify-between items-center py-5 px-6 md:px-10 rounded-lg relative">
+<nav className="my-3 sticky top-0 z-50 bg-zinc-100 text-black flex justify-between items-center py-5 px-6 md:px-10 rounded-lg shadow-sm backdrop-blur-md bg-opacity-90">
       {/* Logo + Título + Links (izquierda) */}
       <div className="flex items-center gap-8">
         <div className="flex items-center gap-2">
