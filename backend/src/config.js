@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost:27017/matchpoint";
-export const TOKEN_SECRET = process.env.TOKEN_SECRET || "Erika_MatchPoint_secret_key";
+export const TOKEN_SECRET = process.env.TOKEN_SECRET || "/8QY2TeRfJ2hBNNx56E/G5rn0x6zKdaiTwrC5XHdMSg=";
 export const PORT = process.env.PORT || 4000;
 
 // Mensaje según la URI
